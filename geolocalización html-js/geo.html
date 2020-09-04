@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalización</title>
+</head>
+<body>
+    <!--'getCurrentPosition' nos devuelve la posición actual del usuario-->
+  
+    <!--dentro del onClick traemos una acción que active todo lo que vamos a hacer  'getLocation()'', esos paréntesis se colocan para indicar que es una acción-->
+
+    <h1>Mi ubicación</h1>
+    <button onclick="getLocation()">ACTIVAR</button>
+    <p id="geo"></p>
+
+    <!--Empezamos a trabajar con Javascript-->
+
+    <script>
+        var x = document.getElementById("geo");
+        function getLocation(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition);
+
+            }
+            else{
+                x.innerHTML = "No es compatible tu navegador"
+            }
+        }
+
+        
+        function showPosition(position){
+            x.innerHTML = "LATITUD: "+position.coords.latitude + "<br> LONGITUD: "+
+            position.coords.longitude;
+        }
+
+
+    </script>
+
+    <!--Partimos de una variable en la cual vamos a depositar todo el contenido 'x', y le agregamos el 'document' para que aparezca en el navegador y dsp el '.getElementById()', dentro del cual ponemos el parámetro 'geo' para llamarlo al hacer click
+    Dsphacemos una función que le pongo el nombre en el cual estoy activando el click: 'getLocation'. También creo una condicional, para que me marque lo que estoy buscando: le digo que mi navegador haga la acción de geolocalización 'navigator.geolocation'. Internamente, cuando tengo ya permitido ese dato, le digo al navegador que pueda acceder a la geolocalización:
+    navigator.geolocation.getCurrentPosition (showPosition). El 'showPosition' es para que se vea en el monitor.
+Por otra parte, con el 'else', si no tiene el dato de la posición, que te imprima por pantalla otra frase. Para eso con Js necesitamos llamar a la variable 'x'y traer por defecto el '.innerHTML' para hacerlo de manera inmediata.
+...................................
+Hacemos otra función que trabajará con showPosition, y se le coloca como parámetro 'position' porque se necesita la posición.
+Internamente llamamos a la variable 'x', que recordemos estaba trabajando con el 'geo' con el 'innerHTML' para que se imprima por pantalla. En este caso le diremos que nos imprima dos cosas, la latitud y la longitud.
+Para que ello funcione, hay que concatener con la 'position' y la coordenada y llamamos a la latitud. Posteriomente se concatena con la longitud -->
+</body>
+</html>
